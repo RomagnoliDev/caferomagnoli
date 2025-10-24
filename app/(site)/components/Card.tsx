@@ -1,3 +1,4 @@
+'use client';
 import { motion } from "framer-motion";
 
 type Props = { title: string; description?: string; children?: React.ReactNode };
