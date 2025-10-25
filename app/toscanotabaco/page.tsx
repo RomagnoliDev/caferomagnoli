@@ -7,7 +7,7 @@ import ContactForm from "../(site)/components/ContactForm";
 import Button from "../(site)/components/Button";
 
 export const metadata = {
-  title: "Toscano Tabaco — Experiencias sensoriales",
+  title: "Toscano Tabaco - Experiencias sensoriales",
   description: "Tabacos selectos, maridajes y eventos privados en CABA.",
 };
 
@@ -22,7 +22,7 @@ export default function Page() {
         cta={<a href="#contacto"><Button>Consultá por experiencias</Button></a>}
         dark
       />
-      <Section title="Experiencias">
+      <Section title="Experiencias" dark>
         <div className="grid md:grid-cols-3 gap-6">
           <Card title="Catas privadas" description="Sesiones guiadas y selección de tabacos premium." />
           <Card title="Maridajes" description="Café Romagnoli, destilados y tabacos en armonía." />

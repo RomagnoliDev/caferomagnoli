@@ -7,7 +7,7 @@ import ContactForm from "../(site)/components/ContactForm";
 import Button from "../(site)/components/Button";
 
 export const metadata = {
-  title: "Café Romagnoli — Cápsulas, grano y molido",
+  title: "Café Romagnoli - Cápsulas, grano y molido",
   description: "Café italiano premium. Máquinas en comodato o venta. B2C y B2B.",
 };
 
@@ -29,7 +29,10 @@ export default function Page() {
         </div>
       </Section>
       <Section title="Máquinas en comodato">
-        <Card title="Solución para oficinas y locales" description="Instalación, capacitación y reposición. Planes por consumo.">
+        <Card
+          title="Solución para oficinas y locales"
+          description="Instalación, capacitación y reposición. Planes por consumo."
+        >
           <a href="#contacto"><Button>Quiero más información</Button></a>
         </Card>
       </Section>
@@ -39,7 +42,7 @@ export default function Page() {
           <Card title="Sectores" description="Oficinas, hoteles boutique, barberías premium, restaurantes y coworks." />
         </div>
       </Section>
-      <Section title="Contacto" >
+      <Section title="Contacto">
         <div id="contacto" className="grid md:grid-cols-2 gap-10">
           <div>
             <h3 className="text-lg font-semibold mb-2">Consultas B2C</h3>

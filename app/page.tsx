@@ -12,12 +12,14 @@ export default function Page() {
       <Navbar />
       <Hero
         title="Romagnoli Group"
-        subtitle="Café Romagnoli & Toscano Tabaco — Calidad y experiencia con raíz italiana."
+        subtitle="Café Romagnoli & Toscano Tabaco - Calidad y experiencia con raíz italiana."
         imageSrc="/romagnoli.png"
-        cta={<div className="flex gap-3">
-          <Link href="/caferomagnoli"><Button>Ir a Café Romagnoli</Button></Link>
-          <Link href="/toscanotabaco"><Button variant="secondary">Ir a Toscano Tabaco</Button></Link>
-        </div>}
+        cta={(
+          <div className="flex gap-3">
+            <Link href="/caferomagnoli"><Button>Ir a Café Romagnoli</Button></Link>
+            <Link href="/toscanotabaco"><Button variant="secondary">Ir a Toscano Tabaco</Button></Link>
+          </div>
+        )}
       />
       <Section title="Unidades de negocio">
         <div className="grid md:grid-cols-2 gap-6">

@@ -3,7 +3,7 @@ import "./../styles/globals.css";
 
 export const metadata: Metadata = {
   title: "Romagnoli Group",
-  description: "Café Romagnoli & Toscano Tabaco — Plan Alfa Fase 1",
+  description: "Café Romagnoli & Toscano Tabaco - Plan Alfa Fase 1",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

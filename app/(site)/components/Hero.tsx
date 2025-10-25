@@ -28,7 +28,13 @@ export default function Hero({ title, subtitle, cta, imageSrc, dark }: Props) {
           {cta && <div className="mt-8">{cta}</div>}
         </div>
         <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden shadow-soft">
-          <Image src={imageSrc} alt="Hero" fill className="object-cover" />
+          <Image
+            src={imageSrc}
+            alt="Hero"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
+          />
         </div>
       </div>
     </section>
