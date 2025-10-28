@@ -9,10 +9,19 @@ export default function ContactForm({ tag }: { tag: "B2C" | "B2B" }) {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     const data = Object.fromEntries(new FormData(form).entries());
-    // For now, simulate success. Hook here to API/Email later.
-    console.log("Lead", { tag, ...data });
-    setStatus("ok");
-    form.reset();
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error("Error al enviar el formulario");
+      setStatus("ok");
+      form.reset();
+    } catch {
+      setStatus("err");
+    }
   };
 
   return (
