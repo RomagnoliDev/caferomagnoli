@@ -2,107 +2,90 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json(); // { nombre, email, telefono?, mensaje?, segmento: "B2C"|"B2B" }
+    const body = await req.json();
+    console.log("[API] Nuevo lead recibido:", body);
 
-    const target = process.env.INTEGRATION_TARGET; // "emailjs" | "sheets" | "hubspot"
-    if (!target) throw new Error("INTEGRATION_TARGET no configurado");
+    const target = process.env.INTEGRATION_TARGET;
+    console.log("[API] INTEGRATION_TARGET:", target);
 
+    if (!target) {
+      throw new Error("INTEGRATION_TARGET no configurado");
+    }
+
+    // --- EMAILJS ---
     if (target === "emailjs") {
-      const r = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          service_id: process.env.EMAILJS_SERVICE_ID,
-          template_id: process.env.EMAILJS_TEMPLATE_ID,
-          user_id: process.env.EMAILJS_PUBLIC_KEY, // clave pública
-          template_params: {
-            nombre: body.nombre,
-            email: body.email,
-            telefono: body.telefono || "",
-            mensaje: body.mensaje || "",
-            segmento: body.segmento,
-            // extra
-            submitted_at: new Date().toISOString(),
-          },
-        }),
-      });
-      if (!r.ok) throw new Error("EmailJS respondió con error");
-      return NextResponse.json({ ok: true });
+      console.warn(
+        "[API] Aviso: EmailJS no permite envíos desde el servidor (Next.js / Node). " +
+          "Debes hacerlo desde el frontend usando la clave pública y el SDK de emailjs-browser."
+      );
+
+      // Simplemente confirmamos el envío para no romper el flujo
+      return NextResponse.json(
+        { ok: true, message: "EmailJS debe manejarse desde el frontend" },
+        { status: 200 }
+      );
     }
 
+    // --- GOOGLE SHEETS ---
     if (target === "sheets") {
-      // Reenvía al Web App de Google Apps Script (ver sección 2)
-      const r = await fetch(process.env.SHEETS_WEBAPP_URL!, {
+      const SHEETS_WEBAPP_URL = process.env.SHEETS_WEBAPP_URL;
+      if (!SHEETS_WEBAPP_URL)
+        throw new Error("Falta SHEETS_WEBAPP_URL en .env");
+
+      console.log("[API] Enviando datos a Google Sheets...");
+
+      const res = await fetch(SHEETS_WEBAPP_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json" },
       });
-      if (!r.ok) throw new Error("Sheets WebApp respondió con error");
+
+      if (!res.ok)
+        throw new Error(`Error al enviar a Sheets (${res.status}): ${await res.text()}`);
+
+      console.log("[API] Envío a Google Sheets exitoso");
       return NextResponse.json({ ok: true });
     }
 
+    // --- HUBSPOT ---
     if (target === "hubspot") {
-      const token = process.env.HUBSPOT_TOKEN!;
-      // 1) Crear/actualizar contacto
-      const contactRes = await fetch("https://api.hubapi.com/crm/v3/objects/contacts", {
+      const HUBSPOT_API_KEY = process.env.HUBSPOT_API_KEY;
+      if (!HUBSPOT_API_KEY)
+        throw new Error("Falta HUBSPOT_API_KEY en .env");
+
+      console.log("[API] Enviando datos a HubSpot...");
+
+      const res = await fetch("https://api.hubapi.com/crm/v3/objects/contacts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${HUBSPOT_API_KEY}`,
         },
         body: JSON.stringify({
           properties: {
             email: body.email,
             firstname: body.nombre,
             phone: body.telefono || "",
+            message: body.mensaje || "",
             segmento: body.segmento,
-            mensaje: body.mensaje || "",
-            source: "web_romagnoli",
-            submitted_at: new Date().toISOString(),
           },
         }),
       });
 
-      // Si ya existe, intentar update por email (respuesta 409)
-      if (contactRes.status === 409) {
-        await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${encodeURIComponent(body.email)}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            properties: {
-              phone: body.telefono || "",
-              segmento: body.segmento,
-              mensaje: body.mensaje || "",
-            },
-          }),
-        });
-      } else if (!contactRes.ok) {
-        throw new Error("Error creando contacto en HubSpot");
-      }
+      if (!res.ok)
+        throw new Error(`Error al enviar a HubSpot (${res.status}): ${await res.text()}`);
 
-      // 2) (Opcional) Crear nota/actividad
-      await fetch("https://api.hubapi.com/crm/v3/objects/notes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          properties: {
-            hs_note_body: `Nuevo lead ${body.segmento} desde web:\n${body.nombre} <${body.email}>\n${body.telefono || ""}\n\n${body.mensaje || ""}`,
-          },
-        }),
-      });
-
+      console.log("[API] Envío a HubSpot exitoso");
       return NextResponse.json({ ok: true });
     }
 
-    throw new Error(`INTEGRATION_TARGET no soportado: ${target}`);
-  } catch (e: any) {
-    console.error(e);
-    return NextResponse.json({ ok: false, error: e.message }, { status: 500 });
+    // --- Si el target no coincide ---
+    throw new Error(`INTEGRATION_TARGET desconocido: ${target}`);
+  } catch (err: any) {
+    console.error("[API] Error en /api/lead:", err);
+    return NextResponse.json(
+      { ok: false, error: err.message || "Error desconocido" },
+      { status: 500 }
+    );
   }
 }
