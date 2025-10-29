@@ -1,21 +1,20 @@
 'use client';
-import { motion } from "framer-motion";
-import clsx from "clsx";
+import { motion, HTMLMotionProps } from 'framer-motion';
+import clsx from 'clsx';
 
-type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "secondary" };
+type ButtonProps = HTMLMotionProps<'button'> & {
+  className?: string;
+};
 
-export default function Button({ className, variant = "primary", ...props }: Props) {
-  const base = "px-5 py-3 rounded-2xl font-semibold shadow-soft";
-  const styles = variant === "primary"
-    ? "bg-romagnoli-red text-white hover:opacity-90"
-    : "bg-white text-gray-900 border border-gray-200 hover:bg-gray-50";
+export default function Button({ className, ...props }: ButtonProps) {
+  const base = "rounded-xl px-4 py-3 text-white bg-blue-600 hover:bg-blue-700";
 
   return (
     <motion.button
+      {...props}
       whileTap={{ scale: 0.98 }}
       whileHover={{ y: -1 }}
-      className={clsx(base, styles, className)}
-      {...props}
+      className={clsx(base, className)}
     />
   );
 }
