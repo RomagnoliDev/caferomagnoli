@@ -43,3 +43,4 @@ coverage/
 
 # Optional caches
 .next/cache
+appSheets.txt
