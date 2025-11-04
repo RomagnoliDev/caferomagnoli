@@ -13,8 +13,17 @@ type Props = {
 
 export default function Hero({ title, subtitle, cta, imageSrc, dark }: Props) {
   return (
-    <section className={(dark ? "bg-toscano-smoke text-white" : "bg-romagnoli-cream") + " relative overflow-hidden"}>
-      <div className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-10 items-center">
+    <section className={(dark ? "bg-toscano-smoke text-white" : "bg-romagnoli-cream text-white") + " relative overflow-hidden"}>
+      <div className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-1 gap-10 items-center">
+        <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden shadow-soft">
+          <Image
+            src={imageSrc}
+            alt="Hero"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
+          />
+        </div>
         <div>
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
@@ -27,15 +36,7 @@ export default function Hero({ title, subtitle, cta, imageSrc, dark }: Props) {
           {subtitle && <p className="mt-4 text-lg opacity-90">{subtitle}</p>}
           {cta && <div className="mt-8">{cta}</div>}
         </div>
-        <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden shadow-soft">
-          <Image
-            src={imageSrc}
-            alt="Hero"
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover"
-          />
-        </div>
+        
       </div>
     </section>
   );

@@ -10,9 +10,9 @@ export default function Card({ title, description, children }: Props) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4 }}
-      className="bg-white rounded-2xl border border-gray-200 p-6"
+      className="bg-black rounded-2xl border border-black p-6"
     >
-      <h3 className="text-lg font-semibold">{title}</h3>
+      <h3 className="text-gray-600 font-semibold">{title}</h3>
       {description && <p className="text-gray-600 mt-2">{description}</p>}
       {children && <div className="mt-4">{children}</div>}
     </motion.div>

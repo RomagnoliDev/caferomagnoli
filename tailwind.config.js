@@ -5,13 +5,13 @@ module.exports = {
     extend: {
       colors: {
         romagnoli: {
-          cream: "#f7efe6",
+          cream: "#463625ff",
           red: "#7c1f24",
           green: "#2e5e3e",
         },
         toscano: {
           wood: "#6b4f3a",
-          gold: "#b08d57",
+          gold: "#917143ff",
           smoke: "#1f1a17",
         },
       },

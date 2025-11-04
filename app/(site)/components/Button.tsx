@@ -12,8 +12,8 @@ export default function Button({ className, variant = 'primary', ...props }: But
 
   const styles = clsx(
     base,
-    variant === 'primary' && "bg-blue-600 hover:bg-blue-700",
-    variant === 'secondary' && "bg-gray-200 text-gray-800 hover:bg-gray-300",
+    variant === 'primary' && "bg-red-600 hover:bg-red-700",
+    variant === 'secondary' && "bg-red-600 text-gray-800 hover:bg-red-700",
     className
   );
 

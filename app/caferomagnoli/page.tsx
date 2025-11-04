@@ -17,15 +17,16 @@ export default function Page() {
       <Navbar />
       <Hero
         title="El arte de disfrutar el tiempo."
-        subtitle="Café italiano de excelencia: cápsulas compatibles, molido y en grano."
+        subtitle="Café italiano de excelencia: cápsulas compatibles, cialdas, molido y en grano."
         imageSrc="/romagnoli.png"
         cta={<a href="#contacto"><Button>Solicitá tu plan</Button></a>}
       />
       <Section title="Productos">
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-4 gap-6">
           <Card title="Cápsulas" description="Compatibles tipo Nespresso. Variedades intensas y balanceadas." />
           <Card title="Molido" description="Molienda precisa para espresso o filtro." />
           <Card title="Grano" description="Blend italiano con tueste equilibrado." />
+          <Card title="Cialdas" description="Cialdas compatibles con máquinas de café, mono dosis y bi dosis." />
         </div>
       </Section>
       <Section title="Máquinas en comodato">
