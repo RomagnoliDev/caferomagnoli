@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos base del body */
+body {
+  /* Gradiente modo claro */
+  background: radial-gradient(
+    circle at top,
+    #ff9100,
+    #442900,
+    #000000
+  );
+}
+/*  background-attachment: fixed; /* para que el gradiente se vea “de fondo” al hacer scroll */
+/*  transition: background 0.3s ease, color 0.3s ease;
+}*/
+/*body {
+  @apply bg-romagnoli-cream text-sm md:text-base text-gray-900;
+}*/
