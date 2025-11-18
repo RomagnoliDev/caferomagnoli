@@ -1,9 +1,9 @@
-import { auth } from "@/auth"; // si usás helper, o usa getServerSession
+import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
 
 export default async function ProfilePage() {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   if (!session || !session.user) {
     // redirigir a login
     return (
