@@ -23,13 +23,8 @@
     "@types/node": "24.9.1",
     "@types/react": "19.2.2",
     "autoprefixer": "^10.4.16",
-<<<<<<< HEAD
-    "eslint": "^8.56.0",
-    "eslint-config-next": "^16.0.3",
-=======
     "eslint": "^9.15.0",
     "eslint-config-next": "16.0.3",
->>>>>>> 2bcaba9 (arreglos)
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.7",
     "typescript": "^5.4.5"
