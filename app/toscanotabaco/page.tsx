@@ -20,9 +20,9 @@ export default function Page() {
         subtitle="Experiencias sensoriales, maridajes y selección de tabacos."
         imageSrc="/toscano.avif"
         cta={<a href="#contacto"><Button>Consultá por experiencias</Button></a>}
-        dark
+        
       />
-      <Section title="Experiencias" dark>
+      <Section title="Experiencias" >
         <div className="grid md:grid-cols-3 gap-6">
           <Card title="Catas privadas" description="Sesiones guiadas y selección de tabacos premium." />
           <Card title="Maridajes" description="Café Romagnoli, destilados y tabacos en armonía." />

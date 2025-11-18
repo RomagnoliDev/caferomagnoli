@@ -1,4 +1,4 @@
-type Props = { title: string; children: React.ReactNode; dark?: boolean };
+type Props = { title: string; children: React.ReactNode };
 
 export default function Section({ title, children }: Props) {
   const sectionClasses = "background" ;
