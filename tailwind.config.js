@@ -16,8 +16,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ["ui-serif", "Georgia", "serif"],
-        sans: ["ui-sans-serif", "system-ui"],
+        display: ["var(--font-kings)"],
+        sans: ["var(--font-kings)"],
       },
       boxShadow: {
         soft: "0 8px 30px rgba(0,0,0,.06)"
