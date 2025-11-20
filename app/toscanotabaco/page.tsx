@@ -16,7 +16,7 @@ export default function Page() {
     <>
       <Navbar />
       <Hero
-        title="El gusto del silencio."
+        title="Il Sigaro Italiano"
         subtitle="Experiencias sensoriales, maridajes y selección de tabacos."
         imageSrc="/toscano.avif"
         cta={<a href="#contacto"><Button>Consultá por experiencias</Button></a>}

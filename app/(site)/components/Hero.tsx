@@ -16,7 +16,7 @@ export default function Hero({ title, subtitle, cta, imageSrc }: Props) {
     <section >
       <div className="flex justify-center max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-1 gap-10 items-center">
 
-        <div className="relative max-w-xs w-full h-48 rounded-2xl overflow-hidden shadow-soft">
+        <div className="relative max-w-xs w-full h-48 rounded-2xl overflow-hidden">
           <Image
             src={imageSrc}
             alt="Hero"
