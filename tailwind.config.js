@@ -16,8 +16,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ["var(--font-kings)"],
-        sans: ["var(--font-kings)"],
+        sans: ["var(--font-lugrasimo)"],
+        serif: ["var(--font-lugrasimo)"],
+        display: ["var(--font-lugrasimo)"],
       },
       boxShadow: {
         soft: "0 8px 30px rgba(0,0,0,.06)"

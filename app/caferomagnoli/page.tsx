@@ -22,7 +22,7 @@ export default function Page() {
         cta={<a href="#contacto"><Button>Solicitá tu plan</Button></a>}
       />
       <Section title="Productos">
-        <div className="grid md:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           <Card title="Cápsulas" description="Compatibles tipo Nespresso. Variedades intensas y balanceadas." />
           <Card title="Molido" description="Molienda precisa para espresso o filtro." />
           <Card title="Grano" description="Blend italiano con tueste equilibrado." />
