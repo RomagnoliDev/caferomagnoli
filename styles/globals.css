@@ -16,9 +16,9 @@ body {
   /* Gradiente modo claro */
   background: radial-gradient(
     circle at top,
-    #9e5a02,
+    #000000,    
     #442900,
-    #000000
+    #9e5a02
   );
 }
 
